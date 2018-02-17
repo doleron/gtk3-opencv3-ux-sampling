@@ -49,7 +49,7 @@ cmake ..
 make
 ```
 
-## running test and other stuff
+## running the application
 
 The application has two modes: single image and webcam
 
