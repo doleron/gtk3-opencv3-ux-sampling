@@ -1,4 +1,4 @@
-# basic-googletest-example
+# gtk3-opencv3-ux-sampling
 
 ## Description
 
