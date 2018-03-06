@@ -41,30 +41,33 @@ void cameraLoop() {
 
     while (captureVideoFromCamera) {
 		bool continueToGrabe = true;
-		imageMutex.lock();
 		bool paused = cameraGrabberWindow->isPaused();
 		if(!paused) {
 			continueToGrabe = camera.read(frameBGR);
 			if(continueToGrabe) {
+				imageMutex.lock();
 				cv::cvtColor(frameBGR, frame, CV_BGR2RGB);
+				imageMutex.unlock();
+				dispatcher.emit();
 			}
 		} 
-		imageMutex.unlock();
-		dispatcher.emit();
 		if(!continueToGrabe) {
 			captureVideoFromCamera = false;
 			std::cerr << "Faleid to retrieve frame from the device. The camera was stopped." << std::endl;
 		} else if(paused) {
 			//yields to avoid other threads to starve
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			std::this_thread::sleep_for(std::chrono::milliseconds(30));
 		}
     }
 }
 
 bool initializeCamera(int cameraIndex) {
-	bool result = camera.open(cameraIndex);;
+	bool result = camera.open(cameraIndex);
 	
 	if(result) {
+		camera.set(CV_CAP_PROP_FRAME_WIDTH, 640);
+		camera.set(CV_CAP_PROP_FRAME_HEIGHT, 480);
+		camera.set(CV_CAP_PROP_FPS, 30);
 		//warn up
 		//just grab and discard
 		for(int i = 0; i < 3; i++) {
