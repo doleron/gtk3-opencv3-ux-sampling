@@ -77,5 +77,17 @@ The "0" is the camera index. If you have an onboard webcam or an usb webcam, try
 
 ## Requirements
 
-I ran this example into an Ubuntu 16.04 virtual machine. Make sure that you have a c++11 compliant compiler. My current compiler/version is the g++/5.4. This code not runs on Windows. Do not expect that I will waste my time porting it for Windows.
+Make sure you have GTKmm, GTK 3 and OpenCV (3 at least) installed. The way you do to install this package varies by operational system. Heer (https://www.gtkmm.org/en/download.html) you can find instructions how to install GTKmm into your machine. Here (https://www.gtk.org/download/index.php) you can find the same steps on GTK3 and in the [Glade's website] (https://glade.gnome.org/) there are instructions to install Glade from sources and from binaries.
+
+GTk3 asnd GTk2 don't live together paceful. If you try to run the examples and got this error message:
+
+```Gtk-ERROR **: GTK+ 2.x symbols detected. Using GTK+ 2.x and GTK+ 3 in the same proc```
+
+It is mostly you have OpenCV build with GTk2 support. The only way to fix it is rebuild OpenCV without GTk2:
+
+opencv_dir/release$cmake [other options] -D WITH_GTK_2_X=OFF ..
+
+in order to disable GTk2 from OpenCV.
+
+I ran this example into an Ubuntu 16.04 virtual machine and also in Raspbian Stretch. Make sure that you have a c++11 compliant compiler. My current compiler/version is the g++/5.4. I didn't tried to run this code on Windows.
 
