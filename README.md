@@ -32,13 +32,13 @@ I great start point with OpenCV is the Display Image example: https://docs.openc
 
 I used g++ 5.4 C++11 compatible compiler in this demo. But it is hard to write the whole command and it is easy to forgot something like a linker flag or something like. Call g++ to compile something directly is used just in the introdutory C++ courses. In practice it is used Makefiles to build (compile/link) all the artifacts. Again, it is hard to use make directly so we use CMake to generate the Makefiles and than we can call make to finally do the job and generate all our executables and libraries.
 
-Cmake is chance everyday but this tutorial can be useful to start: https://www.jetbrains.com/help/clion/2016.1/quick-cmake-tutorial.html
+Although cmake is changing in a daily basis, this tutorial can be stil useful as an kickoff: https://www.jetbrains.com/help/clion/2016.1/quick-cmake-tutorial.html
 
-If you are a old cmake guy give a look in the Cmake antipatterns guide: http://voices.canonical.com/jussi.pakkanen/2013/03/26/a-list-of-common-cmake-antipatterns/
+If you are an old cmake guy, do not wait to give a look in the cmake antipatterns guide: http://voices.canonical.com/jussi.pakkanen/2013/03/26/a-list-of-common-cmake-antipatterns/
 
 ## build instructions
 
-A classical CMake call is enough to build all the project:
+Clone and build the project:
 
 ```
 git clone https://github.com/doleron/gtk3-opencv3-ux-sampling.git
